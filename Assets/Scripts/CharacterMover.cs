@@ -7,6 +7,7 @@ public class CharacterMover : MonoBehaviour
     private void Update()
     {
         var moveValue = Input.GetAxisRaw("Horizontal");
-        characterController.Move(moveValue, Input.GetButtonDown("Jump"));
+        var dash = Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift);
+        characterController.Move(moveValue, dash,Input.GetButtonDown("Jump"));
     }
 }

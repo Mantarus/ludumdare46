@@ -5,6 +5,10 @@ public class CharacterController2D : MonoBehaviour
 {
 	public Animator characterAnimator;
 	public float jumpForce = 400f;							// Amount of force added when the player jumps.
+	public float speed = 5f;								// RunningSpeed
+	public float dashForce = 200f;
+	public float dashJumpForce = 50f;
+	public float dashRate = 2;
     [Range(0, .3f)] public float movementSmoothing = .05f;	// How much to smooth out the movement
 	public bool airControl = false;							// Whether or not a player can steer while jumping;
 	public LayerMask whatIsGround;							// A mask determining what is ground to the character
@@ -15,6 +19,7 @@ public class CharacterController2D : MonoBehaviour
 	private Rigidbody2D _rigidbody2D;
 	private bool _facingLeft = true;						// For determining which way the player is currently facing.
 	private Vector3 _velocity = Vector3.zero;
+	private float _lastDash = 0;
 
 	[Header("Events")]
 	[Space]
@@ -46,17 +51,24 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	public void Move(float move, bool jump)
+	public void Move(float move, bool dash, bool jump)
 	{
+		if (dash) jump = false;
 		//only control the player if grounded or airControl is turned on
 		if (_grounded || airControl)
 		{
 			characterAnimator.SetFloat("Speed", Mathf.Abs(move));
 			// Move the character by finding the target velocity
-			Vector3 targetVelocity = new Vector2(move * 10f, _rigidbody2D.velocity.y);
+			Vector3 targetVelocity = new Vector2(move * speed, _rigidbody2D.velocity.y);
 			// And then smoothing it out and applying it to the character
 			_rigidbody2D.velocity = Vector3.SmoothDamp(_rigidbody2D.velocity, targetVelocity, ref _velocity, movementSmoothing);
 
+			if (dash && Time.time > _lastDash)
+			{
+				_rigidbody2D.AddForce(new Vector2(dashForce * move, dashJumpForce));
+				_lastDash = Time.time + 1f / dashRate;
+			}
+			
 			// If the input is moving the player right and the player is facing left...
 			if (move > 0 && _facingLeft)
 			{
@@ -76,6 +88,7 @@ public class CharacterController2D : MonoBehaviour
 			// Add a vertical force to the player.
 			_grounded = false;
 			_rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+			_lastDash = Time.time;
 		}
 
 		characterAnimator.SetBool("IsJumping", !_grounded);
