@@ -13,7 +13,7 @@ public class CharacterController2D : MonoBehaviour
 	private const float GroundedRadius = .2f;				// Radius of the overlap circle to determine if grounded
 	private bool _grounded;									// Whether or not the player is grounded.
 	private Rigidbody2D _rigidbody2D;
-	private bool _facingRight = true;						// For determining which way the player is currently facing.
+	private bool _facingLeft = true;						// For determining which way the player is currently facing.
 	private Vector3 _velocity = Vector3.zero;
 
 	[Header("Events")]
@@ -58,13 +58,13 @@ public class CharacterController2D : MonoBehaviour
 			_rigidbody2D.velocity = Vector3.SmoothDamp(_rigidbody2D.velocity, targetVelocity, ref _velocity, movementSmoothing);
 
 			// If the input is moving the player right and the player is facing left...
-			if (move > 0 && !_facingRight)
+			if (move > 0 && _facingLeft)
 			{
 				// ... flip the player.
 				Flip();
 			}
 			// Otherwise if the input is moving the player left and the player is facing right...
-			else if (move < 0 && _facingRight)
+			else if (move < 0 && !_facingLeft)
 			{
 				// ... flip the player.
 				Flip();
@@ -86,7 +86,7 @@ public class CharacterController2D : MonoBehaviour
 	private void Flip()
 	{
 		// Switch the way the player is labelled as facing.
-		_facingRight = !_facingRight;
+		_facingLeft = !_facingLeft;
 
 		// Multiply the player's x local scale by -1.
 		Vector3 theScale = transform.localScale;
