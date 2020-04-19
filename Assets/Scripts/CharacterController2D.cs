@@ -63,7 +63,7 @@ public class CharacterController2D : MonoBehaviour
 			// And then smoothing it out and applying it to the character
 			_rigidbody2D.velocity = Vector3.SmoothDamp(_rigidbody2D.velocity, targetVelocity, ref _velocity, movementSmoothing);
 
-			if (dash && Time.time > _lastDash)
+			if (!jump && dash && Time.time > _lastDash)
 			{
 				_rigidbody2D.AddForce(new Vector2(dashForce * move, dashJumpForce));
 				_lastDash = Time.time + 1f / dashRate;
