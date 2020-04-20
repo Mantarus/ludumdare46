@@ -3,18 +3,18 @@
 public class EnemyHealth : MonoBehaviour
 {
     public int maxHealth = 5;
-    private int currentHealth;
+    private int _currentHealth;
 
     private void Start()
     {
-        currentHealth = maxHealth;
+        _currentHealth = maxHealth;
     }
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
+        _currentHealth -= damage;
 
-        if (currentHealth <= 0)
+        if (_currentHealth <= 0)
         {
             Die();
         }
