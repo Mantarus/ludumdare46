@@ -1147,7 +1147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1135634362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4, y: 0, z: 0}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1287246314}
@@ -1289,6 +1289,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterAnimator: {fileID: 1287246320}
+  attackPoint: {fileID: 1135634363}
+  attackRange: 0.3
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!50 &1287246319
 Rigidbody2D:
   serializedVersion: 4
@@ -1689,6 +1694,7 @@ GameObject:
   - component: {fileID: 1674239813}
   - component: {fileID: 1674239814}
   - component: {fileID: 1674239815}
+  - component: {fileID: 1674239816}
   m_Layer: 11
   m_Name: Evil Thing
   m_TagString: Untagged
@@ -1822,6 +1828,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1674239816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674239810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48adff11b2f5045d0bcb6d0bef74b354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
 --- !u!1 &1807494793
 GameObject:
   m_ObjectHideFlags: 0
