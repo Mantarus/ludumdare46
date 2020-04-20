@@ -1187,6 +1187,7 @@ GameObject:
   - component: {fileID: 1287246316}
   - component: {fileID: 1287246315}
   - component: {fileID: 1287246318}
+  - component: {fileID: 1287246322}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -1294,6 +1295,8 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 2048
+  attackRate: 2
+  attackDamage: 2
 --- !u!50 &1287246319
 Rigidbody2D:
   serializedVersion: 4
@@ -1384,6 +1387,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1287246322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287246313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c0c598736ec4cc199c680384e1dd77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 9
+  saveFrame: 0.5
 --- !u!1 &1308074402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,6 +1712,7 @@ GameObject:
   - component: {fileID: 1674239814}
   - component: {fileID: 1674239815}
   - component: {fileID: 1674239816}
+  - component: {fileID: 1674239817}
   m_Layer: 11
   m_Name: Evil Thing
   m_TagString: Untagged
@@ -1806,6 +1824,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1287246314}
   bed: {fileID: 1600578846}
+  aggroSpan: 3
   speed: 1
 --- !u!50 &1674239815
 Rigidbody2D:
@@ -1841,6 +1860,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+--- !u!114 &1674239817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674239810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ce48b34cff0647c6aefecfc6151f0a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitDamage: 1
 --- !u!1 &1807494793
 GameObject:
   m_ObjectHideFlags: 0

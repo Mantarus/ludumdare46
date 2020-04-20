@@ -4,6 +4,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 9;
     public float saveFrame = 0.5f;
+
     private int _currentHealth;
     private float _lastDamageTaken = 0f;
 

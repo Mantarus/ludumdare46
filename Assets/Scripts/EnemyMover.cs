@@ -4,16 +4,18 @@ public class EnemyMover : MonoBehaviour
 {
     public Transform player;
     public Transform bed;
+    public float aggroSpan = 3f;
 
     public float speed;
 
     private Transform _target;
     private Rigidbody2D _rb;
     private bool _facingRight = true;
+    private float _lastSwitchToPlayer = 0f;
 
     private void Start()
     {
-        _target = player;
+        _target = bed;
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -26,6 +28,11 @@ public class EnemyMover : MonoBehaviour
         {
             Flip();
         }
+
+        if (_lastSwitchToPlayer + aggroSpan < Time.time)
+        {
+            SwitchToBed();
+        }
     }
     
     private void Flip()
@@ -37,5 +44,16 @@ public class EnemyMover : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    public void SwitchToPlayer()
+    {
+        _target = player;
+        _lastSwitchToPlayer = Time.time;
+    }
+
+    public void SwitchToBed()
+    {
+        _target = bed;
     }
 }
