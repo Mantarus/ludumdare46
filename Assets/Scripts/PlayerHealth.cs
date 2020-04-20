@@ -4,6 +4,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 9;
     public float saveFrame = 0.5f;
+    public Animator characterAnimator;
 
     private int _currentHealth;
     private float _lastDamageTaken = 0f;
@@ -17,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (_lastDamageTaken + saveFrame < Time.time)
         {
+            characterAnimator.SetTrigger("Hit");
             _currentHealth -= damage;
             _lastDamageTaken = Time.time;
             if (_currentHealth <= 0)

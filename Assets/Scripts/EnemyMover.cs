@@ -6,7 +6,7 @@ public class EnemyMover : MonoBehaviour
     public Transform bed;
     public float aggroSpan = 3f;
 
-    public float speed;
+    public float speed = 1;
 
     private Transform _target;
     private Rigidbody2D _rb;
