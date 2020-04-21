@@ -14,6 +14,7 @@ public class EnemyCombat : MonoBehaviour
         if (LayerMask.NameToLayer("Hooman") == other.gameObject.layer)
         {
             other.gameObject.GetComponent<HoomanHealth>().TakeDamage(hoomanDamage);
+            gameObject.SetActive(false);
         }
     }
 }

@@ -4,6 +4,8 @@ public class HoomanHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     public float saveFrame = 1f;
+    public GameController gameController;
+    public UIController uiController;
     
     private int _currentHealth;
     private float _lastDamageTaken = 0f;
@@ -18,6 +20,7 @@ public class HoomanHealth : MonoBehaviour
         if (_lastDamageTaken + saveFrame < Time.time)
         {
             _currentHealth -= damage;
+            uiController.SetHoomanSleep(_currentHealth);
             _lastDamageTaken = Time.time;
             if (_currentHealth <= 0)
             {
@@ -28,6 +31,6 @@ public class HoomanHealth : MonoBehaviour
 
     private void Die()
     {
-        gameObject.SetActive(false);
+        gameController.GameOver();
     }
 }
